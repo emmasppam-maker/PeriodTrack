@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PeriodTrack</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         NAVIGATION BAR
+    ====================================================== -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            <span>🌸</span>
+            PeriodTrack
+        </div>
+
+        <div class="nav-text">
+            Your cycle, understood.
+        </div>
+
+    </header>
+
+
+
+    <main>
+
+
+        <!-- =====================================================
+             HERO SECTION
+        ====================================================== -->
+
+        <section class="hero">
+
+            <div class="hero-text">
+
+                <p class="small-heading">
+                    YOUR PERSONAL CYCLE COMPANION
+                </p>
+
+                <h1>
+                    Understand your cycle,<br>
+                    <span>one day at a time.</span>
+                </h1>
+
+                <p class="description">
+                    Enter your recent period details and PeriodTrack will
+                    calculate your approximate cycle length and next expected period.
+                </p>
+
+            </div>
+
+
+            <div class="flower">
+                🌸
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             INPUT CARD
+        ====================================================== -->
+
+        <section class="tracker-card">
+
+            <div class="card-heading">
+
+                <div>
+
+                    <h2>
+                        Track Your Cycle
+                    </h2>
+
+                    <p>
+                        Enter the start dates of your two most recent periods.
+                    </p>
+
+                </div>
+
+
+                <div class="heart">
+                    ❤️
+                </div>
+
+            </div>
+
+
+
+            <div class="form-grid">
+
+
+                <!-- MOST RECENT PERIOD -->
+
+                <div class="input-group">
+
+                    <label for="lastPeriod">
+                        Most Recent Period Start Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="lastPeriod"
+                    >
+
+                </div>
+
+
+
+                <!-- PREVIOUS PERIOD -->
+
+                <div class="input-group">
+
+                    <label for="previousPeriod">
+                        Period Before That
+                    </label>
+
+                    <input
+                        type="date"
+                        id="previousPeriod"
+                    >
+
+                </div>
+
+
+
+                <!-- PERIOD DURATION -->
+
+                <div class="input-group full-width">
+
+                    <label for="periodDuration">
+                        How many days did your last period last?
+                    </label>
+
+                    <select id="periodDuration">
+
+                        <option value="">
+                            Select duration
+                        </option>
+
+                        <option value="2">
+                            2 days
+                        </option>
+
+                        <option value="3">
+                            3 days
+                        </option>
+
+                        <option value="4">
+                            4 days
+                        </option>
+
+                        <option value="5">
+                            5 days
+                        </option>
+
+                        <option value="6">
+                            6 days
+                        </option>
+
+                        <option value="7">
+                            7 days
+                        </option>
+
+                        <option value="8">
+                            8 days
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =====================================================
+                 CALCULATE BUTTON
+            ====================================================== -->
+
+            <button
+                type="button"
+                class="calculate-btn"
+                onclick="calculateCycle()"
+            >
+
+                Calculate My Cycle
+
+                <span>
+                    →
+                </span>
+
+            </button>
+
+
+            <p class="privacy-note">
+                ❤️ Your information is used only to calculate your cycle.
+            </p>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             RESULT SECTION
+        ====================================================== -->
+
+        <section
+            id="resultSection"
+            class="result-section"
+            style="display: none;"
+        >
+
+            <div class="result-header">
+
+                <p class="small-heading">
+                    YOUR CYCLE SUMMARY
+                </p>
+
+                <h2>
+                    Here's what we found
+                </h2>
+
+            </div>
+
+
+
+            <div class="result-grid">
+
+
+                <!-- CYCLE LENGTH -->
+
+                <div class="result-card">
+
+                    <div class="result-icon">
+                        ◷
+                    </div>
+
+                    <p>
+                        Approximate Cycle
+                    </p>
+
+                    <h3 id="cycleLength">
+                        --
+                    </h3>
+
+                    <span>
+                        days
+                    </span>
+
+                </div>
+
+
+
+                <!-- NEXT EXPECTED PERIOD -->
+
+                <div class="result-card highlight">
+
+                    <div class="result-icon">
+                        ❤️
+                    </div>
+
+                    <p>
+                        Next Expected Period
+                    </p>
+
+                    <h3 id="nextPeriod">
+                        --
+                    </h3>
+
+                    <span>
+                        estimated
+                    </span>
+
+                </div>
+
+
+
+                <!-- PERIOD DURATION -->
+
+                <div class="result-card">
+
+                    <div class="result-icon">
+                        🌸
+                    </div>
+
+                    <p>
+                        Last Period Duration
+                    </p>
+
+                    <h3 id="durationResult">
+                        --
+                    </h3>
+
+                    <span>
+                        days
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =====================================================
+                 SAVE BUTTON
+            ====================================================== -->
+
+            <button
+                type="button"
+                class="save-btn"
+                onclick="saveCycle()"
+            >
+
+                Save My Cycle
+
+                <span>
+                    ♡
+                </span>
+
+            </button>
+
+
+
+            <!-- INFORMATION NOTE -->
+
+            <div class="note-box">
+
+                <strong>
+                    Remember ❤️
+                </strong>
+
+                <p>
+                    PeriodTrack provides approximate estimates based on the
+                    information you enter. Menstrual cycles naturally vary
+                    from person to person and from month to month.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             HISTORY SECTION
+        ====================================================== -->
+
+        <section class="history-section">
+
+            <div class="result-header">
+
+                <p class="small-heading">
+                    YOUR HISTORY
+                </p>
+
+                <h2>
+                    Previous Cycles
+                </h2>
+
+            </div>
+
+
+
+            <!-- AWS HISTORY WILL APPEAR HERE -->
+
+            <div
+                id="historyContainer"
+                class="history-container"
+            >
+
+                <p class="empty-history">
+                    Loading your saved cycles...
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <p>
+            PeriodTrack
+        </p>
+
+        <span>
+            Made with care ♡
+        </span>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
